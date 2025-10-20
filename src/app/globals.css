@@ -1,26 +1,271 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary Colors - Vibrant Purple-Blue Gradient */
+  --primary: oklch(0.65 0.25 280);
+  --primary-foreground: oklch(0.98 0 0);
+  
+  /* Secondary Colors - Soft Cyan */
+  --secondary: oklch(0.92 0.08 200);
+  --secondary-foreground: oklch(0.15 0 0);
+  
+  /* Muted Colors - Warm Gray */
+  --muted: oklch(0.96 0.02 280);
+  --muted-foreground: oklch(0.45 0.05 280);
+  
+  /* Accent Colors - Bright Pink */
+  --accent: oklch(0.88 0.15 320);
+  --accent-foreground: oklch(0.15 0 0);
+  
+  /* Destructive - Modern Red */
+  --destructive: oklch(0.65 0.2 15);
+  --destructive-foreground: oklch(0.98 0 0);
+  
+  /* Border & Input */
+  --border: oklch(0.9 0.05 280);
+  --input: oklch(0.95 0.05 280);
+  --ring: oklch(0.65 0.25 280);
+  
+  /* Background & Foreground */
+  --background: oklch(0.99 0.01 280);
+  --foreground: oklch(0.15 0.05 280);
+  
+  /* Card Colors */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.05 280);
+  
+  /* Popover */
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.05 280);
+  
+  /* Chart Colors - Vibrant Palette */
+  --chart-1: oklch(0.7 0.2 280);  /* Purple */
+  --chart-2: oklch(0.65 0.25 200); /* Cyan */
+  --chart-3: oklch(0.75 0.2 320);  /* Pink */
+  --chart-4: oklch(0.7 0.25 60);   /* Yellow */
+  --chart-5: oklch(0.65 0.2 15);   /* Red */
+  
+  /* Sidebar */
+  --sidebar: oklch(0.98 0.02 280);
+  --sidebar-foreground: oklch(0.15 0.05 280);
+  --sidebar-primary: oklch(0.65 0.25 280);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.92 0.08 200);
+  --sidebar-accent-foreground: oklch(0.15 0 0);
+  --sidebar-border: oklch(0.9 0.05 280);
+  --sidebar-ring: oklch(0.65 0.25 280);
+  
+  /* Radius */
+  --radius: 0.75rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* Tailwind CSS custom properties */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+
+* {
+  border-color: var(--border);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+.font-heading {
+  font-family: var(--font-outfit), system-ui, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
+}
+
+/* Smooth animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Custom CSS properties for Tailwind CSS v4 */
+
+.dark {
+  /* Primary Colors - Bright Cyan */
+  --primary: oklch(0.7 0.25 200);
+  --primary-foreground: oklch(0.05 0 0);
+  
+  /* Secondary Colors - Deep Purple */
+  --secondary: oklch(0.25 0.15 280);
+  --secondary-foreground: oklch(0.95 0.02 280);
+  
+  /* Muted Colors - Dark Purple */
+  --muted: oklch(0.2 0.1 280);
+  --muted-foreground: oklch(0.7 0.05 280);
+  
+  /* Accent Colors - Bright Pink */
+  --accent: oklch(0.3 0.15 320);
+  --accent-foreground: oklch(0.95 0.02 280);
+  
+  /* Destructive - Bright Red */
+  --destructive: oklch(0.7 0.25 15);
+  --destructive-foreground: oklch(0.05 0 0);
+  
+  /* Border & Input */
+  --border: oklch(0.25 0.1 280);
+  --input: oklch(0.2 0.1 280);
+  --ring: oklch(0.7 0.25 200);
+  
+  /* Background & Foreground */
+  --background: oklch(0.08 0.05 280);
+  --foreground: oklch(0.95 0.02 280);
+  
+  /* Card Colors */
+  --card: oklch(0.12 0.05 280);
+  --card-foreground: oklch(0.95 0.02 280);
+  
+  /* Popover */
+  --popover: oklch(0.12 0.05 280);
+  --popover-foreground: oklch(0.95 0.02 280);
+  
+  /* Chart Colors - Neon Palette */
+  --chart-1: oklch(0.7 0.25 200);  /* Cyan */
+  --chart-2: oklch(0.75 0.2 320);  /* Pink */
+  --chart-3: oklch(0.7 0.25 60);   /* Yellow */
+  --chart-4: oklch(0.65 0.25 280); /* Purple */
+  --chart-5: oklch(0.7 0.2 15);    /* Red */
+  
+  /* Sidebar */
+  --sidebar: oklch(0.1 0.05 280);
+  --sidebar-foreground: oklch(0.95 0.02 280);
+  --sidebar-primary: oklch(0.7 0.25 200);
+  --sidebar-primary-foreground: oklch(0.05 0 0);
+  --sidebar-accent: oklch(0.25 0.15 280);
+  --sidebar-accent-foreground: oklch(0.95 0.02 280);
+  --sidebar-border: oklch(0.25 0.1 280);
+  --sidebar-ring: oklch(0.7 0.25 200);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+    outline-color: var(--ring);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}
+
+/* Beautiful gradient animations */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--primary);
+  }
+  50% {
+    box-shadow: 0 0 40px var(--primary), 0 0 60px var(--primary);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Utility classes for beautiful effects */
+.gradient-animated {
+  background: linear-gradient(-45deg, var(--primary), var(--accent), var(--secondary), var(--primary));
+  background-size: 400% 400%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+.glow-effect {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.shimmer-effect {
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-effect {
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.neon-text {
+  text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary), 0 0 30px var(--primary);
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, var(--primary), var(--accent));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
