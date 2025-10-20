@@ -1,0 +1,257 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "E-Commerce Platform",
+      "description": "Nền tảng thương mại điện tử hoàn chỉnh với giỏ hàng, thanh toán và quản lý đơn hàng. Hỗ trợ đa ngôn ngữ và tích hợp nhiều phương thức thanh toán.",
+      "image": "/api/placeholder/600/400",
+      "category": "fullstack",
+      "tech": ["React", "Node.js", "PostgreSQL", "Stripe", "Redis", "Docker"],
+      "liveUrl": "https://ecommerce-demo.example.com",
+      "githubUrl": "https://github.com/username/ecommerce-platform",
+      "featured": true,
+      "status": "completed",
+      "year": "2024",
+      "duration": "3 months",
+      "teamSize": 4,
+      "role": "Lead Developer",
+      "highlights": [
+        "Tăng 40% conversion rate",
+        "Xử lý 10,000+ orders/ngày",
+        "99.9% uptime"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Task Management App",
+      "description": "Ứng dụng quản lý công việc với drag & drop, real-time collaboration và analytics. Tích hợp AI để đề xuất task priority.",
+      "image": "/api/placeholder/600/400",
+      "category": "frontend",
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Socket.io",
+        "Prisma"
+      ],
+      "liveUrl": "https://taskmanager-demo.example.com",
+      "githubUrl": "https://github.com/username/task-manager",
+      "featured": true,
+      "status": "completed",
+      "year": "2024",
+      "duration": "2 months",
+      "teamSize": 2,
+      "role": "Full-Stack Developer",
+      "highlights": [
+        "Real-time collaboration",
+        "AI-powered task suggestions",
+        "Mobile responsive design"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Weather Dashboard",
+      "description": "Dashboard hiển thị thông tin thời tiết với maps, charts và notifications. Tích hợp machine learning để dự đoán thời tiết chính xác.",
+      "image": "/api/placeholder/600/400",
+      "category": "frontend",
+      "tech": [
+        "React",
+        "Chart.js",
+        "OpenWeather API",
+        "Material-UI",
+        "Python",
+        "TensorFlow"
+      ],
+      "liveUrl": "https://weather-dashboard.example.com",
+      "githubUrl": "https://github.com/username/weather-dashboard",
+      "featured": false,
+      "status": "completed",
+      "year": "2023",
+      "duration": "1.5 months",
+      "teamSize": 1,
+      "role": "Solo Developer",
+      "highlights": [
+        "ML weather prediction",
+        "Interactive maps",
+        "Real-time notifications"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Social Media API",
+      "description": "RESTful API cho mạng xã hội với authentication, posts và real-time messaging. Hỗ trợ microservices architecture.",
+      "image": "/api/placeholder/600/400",
+      "category": "backend",
+      "tech": [
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Socket.io",
+        "JWT",
+        "Redis",
+        "AWS"
+      ],
+      "liveUrl": "https://social-api.example.com/docs",
+      "githubUrl": "https://github.com/username/social-media-api",
+      "featured": false,
+      "status": "completed",
+      "year": "2023",
+      "duration": "2.5 months",
+      "teamSize": 3,
+      "role": "Backend Developer",
+      "highlights": [
+        "Microservices architecture",
+        "Real-time messaging",
+        "Scalable to 1M+ users"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Mobile Banking App",
+      "description": "Ứng dụng ngân hàng di động với bảo mật cao và giao diện thân thiện. Tích hợp biometric authentication và blockchain.",
+      "image": "/api/placeholder/600/400",
+      "category": "mobile",
+      "tech": [
+        "React Native",
+        "Redux",
+        "Biometric Auth",
+        "Firebase",
+        "Blockchain",
+        "Web3"
+      ],
+      "liveUrl": "https://banking-app.example.com",
+      "githubUrl": "https://github.com/username/mobile-banking",
+      "featured": true,
+      "status": "completed",
+      "year": "2024",
+      "duration": "4 months",
+      "teamSize": 5,
+      "role": "Mobile Lead",
+      "highlights": [
+        "Bank-grade security",
+        "Biometric authentication",
+        "Blockchain integration"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "AI Content Generator",
+      "description": "Công cụ tạo nội dung AI với machine learning và natural language processing. Hỗ trợ đa ngôn ngữ và nhiều format.",
+      "image": "/api/placeholder/600/400",
+      "category": "fullstack",
+      "tech": [
+        "Python",
+        "FastAPI",
+        "OpenAI API",
+        "React",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "liveUrl": "https://ai-content.example.com",
+      "githubUrl": "https://github.com/username/ai-content-generator",
+      "featured": false,
+      "status": "in-progress",
+      "year": "2024",
+      "duration": "3 months",
+      "teamSize": 2,
+      "role": "AI Developer",
+      "highlights": [
+        "GPT-4 integration",
+        "Multi-language support",
+        "Content optimization"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Real Estate Platform",
+      "description": "Nền tảng bất động sản với VR tours, AI pricing và blockchain contracts. Tích hợp với Google Maps và AR.",
+      "image": "/api/placeholder/600/400",
+      "category": "fullstack",
+      "tech": [
+        "Next.js",
+        "Three.js",
+        "AR.js",
+        "Solidity",
+        "Web3",
+        "Google Maps API"
+      ],
+      "liveUrl": "https://realestate-vr.example.com",
+      "githubUrl": "https://github.com/username/real-estate-platform",
+      "featured": true,
+      "status": "completed",
+      "year": "2024",
+      "duration": "5 months",
+      "teamSize": 6,
+      "role": "Tech Lead",
+      "highlights": [
+        "VR property tours",
+        "AI price prediction",
+        "Blockchain contracts"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Fitness Tracking App",
+      "description": "Ứng dụng theo dõi fitness với AI coaching, social features và health analytics. Tích hợp với wearable devices.",
+      "image": "/api/placeholder/600/400",
+      "category": "mobile",
+      "tech": [
+        "Flutter",
+        "Firebase",
+        "TensorFlow",
+        "HealthKit",
+        "Google Fit",
+        "WebRTC"
+      ],
+      "liveUrl": "https://fitness-app.example.com",
+      "githubUrl": "https://github.com/username/fitness-tracker",
+      "featured": false,
+      "status": "completed",
+      "year": "2023",
+      "duration": "3 months",
+      "teamSize": 3,
+      "role": "Mobile Developer",
+      "highlights": [
+        "AI personal trainer",
+        "Social challenges",
+        "Health data sync"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "key": "all",
+      "label": "Tất cả",
+      "icon": "Grid3X3"
+    },
+    {
+      "key": "frontend",
+      "label": "Frontend",
+      "icon": "Code"
+    },
+    {
+      "key": "backend",
+      "label": "Backend",
+      "icon": "Database"
+    },
+    {
+      "key": "fullstack",
+      "label": "Full-Stack",
+      "icon": "Layers"
+    },
+    {
+      "key": "mobile",
+      "label": "Mobile",
+      "icon": "Smartphone"
+    }
+  ],
+  "stats": {
+    "totalProjects": 8,
+    "featuredProjects": 4,
+    "completedProjects": 7,
+    "inProgressProjects": 1,
+    "totalTechnologies": 25,
+    "averageProjectDuration": "2.8 months"
+  }
+}

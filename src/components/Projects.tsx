@@ -1,98 +1,76 @@
 "use client";
 
-import { useState } from "react";
-import { ExternalLink, Github, Eye } from "lucide-react";
+import { useState, useEffect } from "react";
+import {
+  ExternalLink,
+  Github,
+  Eye,
+  Calendar,
+  Users,
+  Clock,
+  Star,
+} from "lucide-react";
+import { ProjectsData } from "@/types/projects";
+import { getProjectsData, getProjectsByCategory } from "@/lib/projects";
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState("all");
+  const [projectsData, setProjectsData] = useState<ProjectsData | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const projects = [
-    {
-      id: 1,
-      title: "E-Commerce Platform",
-      description:
-        "Nền tảng thương mại điện tử hoàn chỉnh với giỏ hàng, thanh toán và quản lý đơn hàng.",
-      image: "/api/placeholder/600/400",
-      category: "fullstack",
-      tech: ["React", "Node.js", "PostgreSQL", "Stripe"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/example",
-      featured: true,
-    },
-    {
-      id: 2,
-      title: "Task Management App",
-      description:
-        "Ứng dụng quản lý công việc với drag & drop, real-time collaboration và analytics.",
-      image: "/api/placeholder/600/400",
-      category: "frontend",
-      tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/example",
-      featured: true,
-    },
-    {
-      id: 3,
-      title: "Weather Dashboard",
-      description:
-        "Dashboard hiển thị thông tin thời tiết với maps, charts và notifications.",
-      image: "/api/placeholder/600/400",
-      category: "frontend",
-      tech: ["React", "Chart.js", "OpenWeather API", "Material-UI"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/example",
-      featured: false,
-    },
-    {
-      id: 4,
-      title: "Social Media API",
-      description:
-        "RESTful API cho mạng xã hội với authentication, posts và real-time messaging.",
-      image: "/api/placeholder/600/400",
-      category: "backend",
-      tech: ["Node.js", "Express", "MongoDB", "Socket.io"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/example",
-      featured: false,
-    },
-    {
-      id: 5,
-      title: "Mobile Banking App",
-      description:
-        "Ứng dụng ngân hàng di động với bảo mật cao và giao diện thân thiện.",
-      image: "/api/placeholder/600/400",
-      category: "mobile",
-      tech: ["React Native", "Redux", "Biometric Auth", "Firebase"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/example",
-      featured: true,
-    },
-    {
-      id: 6,
-      title: "AI Content Generator",
-      description:
-        "Công cụ tạo nội dung AI với machine learning và natural language processing.",
-      image: "/api/placeholder/600/400",
-      category: "fullstack",
-      tech: ["Python", "FastAPI", "OpenAI API", "React"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/example",
-      featured: false,
-    },
-  ];
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const data = await getProjectsData();
+        setProjectsData(data);
+      } catch (error) {
+        console.error("Error loading projects:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const filters = [
-    { key: "all", label: "Tất cả" },
-    { key: "frontend", label: "Frontend" },
-    { key: "backend", label: "Backend" },
-    { key: "fullstack", label: "Full-Stack" },
-    { key: "mobile", label: "Mobile" },
-  ];
+    loadData();
+  }, []);
 
-  const filteredProjects =
-    activeFilter === "all"
-      ? projects
-      : projects.filter((project) => project.category === activeFilter);
+  if (loading) {
+    return (
+      <section id="projects" className="py-20 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6">
+              Dự án nổi bật
+            </h2>
+            <div className="flex justify-center">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!projectsData) {
+    return (
+      <section id="projects" className="py-20 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center">
+            <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6">
+              Dự án nổi bật
+            </h2>
+            <p className="text-muted-foreground">
+              Không thể tải dữ liệu dự án.
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  const filteredProjects = getProjectsByCategory(
+    projectsData.projects,
+    activeFilter
+  );
 
   return (
     <section id="projects" className="py-20 bg-muted/30">
@@ -109,7 +87,7 @@ export default function Projects() {
 
         {/* Filter Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {filters.map((filter) => (
+          {projectsData.categories.map((filter) => (
             <button
               key={filter.key}
               onClick={() => setActiveFilter(filter.key)}
@@ -177,28 +155,84 @@ export default function Projects() {
                   <h3 className="font-heading text-xl font-bold group-hover:text-primary transition-colors duration-200">
                     {project.title}
                   </h3>
-                  {project.featured && (
-                    <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full">
-                      Featured
+                  <div className="flex items-center gap-2">
+                    {project.featured && (
+                      <span className="px-3 py-1 gradient-animated text-primary-foreground text-xs font-semibold rounded-full glow-effect">
+                        <Star className="w-3 h-3 inline mr-1" />
+                        Featured
+                      </span>
+                    )}
+                    <span
+                      className={`px-3 py-1 text-xs font-semibold rounded-full ${
+                        project.status === "completed"
+                          ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                          : project.status === "in-progress"
+                          ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+                          : "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                      }`}
+                    >
+                      {project.status === "completed"
+                        ? "Hoàn thành"
+                        : project.status === "in-progress"
+                        ? "Đang phát triển"
+                        : "Kế hoạch"}
                     </span>
-                  )}
+                  </div>
                 </div>
 
                 <p className="text-muted-foreground mb-4 leading-relaxed">
                   {project.description}
                 </p>
 
+                {/* Project Stats */}
+                <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Calendar className="w-4 h-4" />
+                    <span>{project.year}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Clock className="w-4 h-4" />
+                    <span>{project.duration}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Users className="w-4 h-4" />
+                    <span>{project.teamSize} người</span>
+                  </div>
+                  <div className="text-muted-foreground">
+                    <span className="font-medium">{project.role}</span>
+                  </div>
+                </div>
+
                 {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.map((tech, index) => (
+                  {project.tech.map((tech: string, index: number) => (
                     <span
                       key={index}
-                      className="px-3 py-1 bg-muted text-muted-foreground text-xs font-medium rounded-full"
+                      className="px-3 py-1 glass-effect text-muted-foreground text-xs font-medium rounded-full hover:bg-accent transition-colors duration-200"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
+
+                {/* Highlights */}
+                {project.highlights && project.highlights.length > 0 && (
+                  <div className="mb-4">
+                    <h4 className="text-sm font-semibold mb-2 text-foreground">
+                      Điểm nổi bật:
+                    </h4>
+                    <ul className="text-xs text-muted-foreground space-y-1">
+                      {project.highlights
+                        .slice(0, 2)
+                        .map((highlight: string, index: number) => (
+                          <li key={index} className="flex items-start gap-2">
+                            <span className="text-primary mt-1">•</span>
+                            <span>{highlight}</span>
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
+                )}
 
                 {/* Action Buttons */}
                 <div className="flex space-x-3">
@@ -206,7 +240,7 @@ export default function Projects() {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 bg-primary text-primary-foreground rounded-xl font-semibold hover:bg-primary/90 transition-colors duration-200"
+                    className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 gradient-animated text-primary-foreground rounded-xl font-semibold hover:scale-105 transition-all duration-200 glow-effect"
                   >
                     <ExternalLink className="w-4 h-4" />
                     <span>Live Demo</span>
@@ -215,7 +249,7 @@ export default function Projects() {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 border border-border text-foreground rounded-xl font-semibold hover:bg-accent transition-colors duration-200"
+                    className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 glass-effect border border-border text-foreground rounded-xl font-semibold hover:bg-accent transition-all duration-200 hover:scale-105"
                   >
                     <Github className="w-4 h-4" />
                     <span>Code</span>
@@ -226,13 +260,48 @@ export default function Projects() {
           ))}
         </div>
 
+        {/* Project Stats */}
+        <div className="mt-16 mb-12">
+          <h3 className="font-heading text-2xl font-bold text-center mb-8">
+            Thống kê dự án
+          </h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="text-center p-6 rounded-2xl glass-effect">
+              <div className="text-3xl font-bold text-primary mb-2">
+                {projectsData.stats.totalProjects}
+              </div>
+              <div className="text-sm text-muted-foreground">Tổng dự án</div>
+            </div>
+            <div className="text-center p-6 rounded-2xl glass-effect">
+              <div className="text-3xl font-bold text-primary mb-2">
+                {projectsData.stats.featuredProjects}
+              </div>
+              <div className="text-sm text-muted-foreground">Dự án nổi bật</div>
+            </div>
+            <div className="text-center p-6 rounded-2xl glass-effect">
+              <div className="text-3xl font-bold text-primary mb-2">
+                {projectsData.stats.completedProjects}
+              </div>
+              <div className="text-sm text-muted-foreground">Đã hoàn thành</div>
+            </div>
+            <div className="text-center p-6 rounded-2xl glass-effect">
+              <div className="text-3xl font-bold text-primary mb-2">
+                {projectsData.stats.totalTechnologies}
+              </div>
+              <div className="text-sm text-muted-foreground">
+                Công nghệ sử dụng
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* View More Projects */}
         <div className="text-center mt-12">
           <a
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 px-8 py-4 bg-muted text-muted-foreground rounded-2xl font-semibold hover:bg-accent hover:text-accent-foreground transition-all duration-200"
+            className="inline-flex items-center space-x-2 px-8 py-4 glass-effect text-muted-foreground rounded-2xl font-semibold hover:bg-accent hover:text-accent-foreground transition-all duration-200 hover:scale-105 glow-effect"
           >
             <Github className="w-5 h-5" />
             <span>Xem thêm trên GitHub</span>
