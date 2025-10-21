@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+        
+        .cv-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: #fff;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #3b82f6;
+        }
+        
+        .name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+        
+        .title {
+            font-size: 1.2rem;
+            color: #3b82f6;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .experience-item, .project-item, .education-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .item-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .item-company {
+            color: #3b82f6;
+            font-weight: 500;
+        }
+        
+        .item-date {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .item-description {
+            color: #475569;
+            margin-bottom: 10px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .skill-category {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .skill-category h4 {
+            color: #1e293b;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+        
+        .skill-list {
+            color: #475569;
+            font-size: 0.9rem;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .tech-tag {
+            background: #3b82f6;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .achievements {
+            list-style: none;
+        }
+        
+        .achievements li {
+            margin-bottom: 5px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .achievements li::before {
+            content: "•";
+            color: #3b82f6;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        @media print {
+            .cv-container {
+                padding: 20px;
+            }
+            
+            .section {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <div class="header">
+            <h1 class="name">Nguyễn Văn Developer</h1>
+            <p class="title">Full-Stack Developer & UI/UX Designer</p>
+            <div class="contact-info">
+                <span>📧 contact@example.com</span>
+                <span>📱 +84 123 456 789</span>
+                <span>🌐 github.com/username</span>
+                <span>📍 Hồ Chí Minh, Việt Nam</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Giới thiệu</h2>
+            <p class="item-description">
+                Developer đam mê công nghệ với hơn 3 năm kinh nghiệm phát triển ứng dụng web và mobile. 
+                Chuyên về React, Next.js, Node.js và thiết kế UI/UX hiện đại. 
+                Luôn cập nhật những xu hướng công nghệ mới nhất và đam mê tạo ra những sản phẩm có ý nghĩa.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Kinh nghiệm làm việc</h2>
+            
+            <div class="experience-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Senior Developer</div>
+                        <div class="item-company">Tech Company</div>
+                    </div>
+                    <div class="item-date">2024 - Hiện tại</div>
+                </div>
+                <p class="item-description">
+                    Dẫn dắt team phát triển các dự án lớn, mentor junior developers và thiết kế kiến trúc hệ thống.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">AWS</span>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Full-Stack Developer</div>
+                        <div class="item-company">Startup XYZ</div>
+                    </div>
+                    <div class="item-date">2023 - 2024</div>
+                </div>
+                <p class="item-description">
+                    Phát triển ứng dụng web và mobile từ đầu đến cuối, tích hợp API và tối ưu hóa performance.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Next.js</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Redis</span>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Frontend Developer</div>
+                        <div class="item-company">Digital Agency</div>
+                    </div>
+                    <div class="item-date">2022 - 2023</div>
+                </div>
+                <p class="item-description">
+                    Chuyên về React và thiết kế UI/UX cho các dự án khách hàng, tạo ra giao diện responsive và user-friendly.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Tailwind CSS</span>
+                    <span class="tech-tag">Figma</span>
+                    <span class="tech-tag">Framer Motion</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Dự án nổi bật</h2>
+            
+            <div class="project-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">E-Commerce Platform</div>
+                        <div class="item-company">Full-Stack Project</div>
+                    </div>
+                    <div class="item-date">2024</div>
+                </div>
+                <p class="item-description">
+                    Nền tảng thương mại điện tử hoàn chỉnh với giỏ hàng, thanh toán và quản lý đơn hàng.
+                </p>
+                <ul class="achievements">
+                    <li>Tăng 40% conversion rate</li>
+                    <li>Xử lý 10,000+ orders/ngày</li>
+                    <li>99.9% uptime</li>
+                </ul>
+                <div class="tech-stack">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Stripe</span>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Mobile Banking App</div>
+                        <div class="item-company">Mobile Development</div>
+                    </div>
+                    <div class="item-date">2024</div>
+                </div>
+                <p class="item-description">
+                    Ứng dụng ngân hàng di động với bảo mật cao và giao diện thân thiện.
+                </p>
+                <ul class="achievements">
+                    <li>Bank-grade security</li>
+                    <li>Biometric authentication</li>
+                    <li>Blockchain integration</li>
+                </ul>
+                <div class="tech-stack">
+                    <span class="tech-tag">React Native</span>
+                    <span class="tech-tag">Redux</span>
+                    <span class="tech-tag">Firebase</span>
+                    <span class="tech-tag">Web3</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Kỹ năng</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Frontend</h4>
+                    <div class="skill-list">
+                        React, Next.js, TypeScript, Tailwind CSS, JavaScript, HTML/CSS
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Backend</h4>
+                    <div class="skill-list">
+                        Node.js, Python, PostgreSQL, MongoDB, Express.js, REST APIs
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Mobile</h4>
+                    <div class="skill-list">
+                        React Native, Flutter, iOS Development, Android Development
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Tools & Others</h4>
+                    <div class="skill-list">
+                        Git, Docker, AWS, Vercel, VS Code, Figma, Design Systems
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Học vấn</h2>
+            <div class="education-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Cử nhân Công nghệ Thông tin</div>
+                        <div class="item-company">Đại học Bách Khoa TP.HCM</div>
+                    </div>
+                    <div class="item-date">2018 - 2022</div>
+                </div>
+                <p class="item-description">
+                    Chuyên ngành Phát triển Phần mềm, GPA: 3.8/4.0
+                </p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Chứng chỉ</h2>
+            <div class="education-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">AWS Certified Developer</div>
+                        <div class="item-company">Amazon Web Services</div>
+                    </div>
+                    <div class="item-date">2024</div>
+                </div>
+            </div>
+            <div class="education-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Google UX Design Certificate</div>
+                        <div class="item-company">Google</div>
+                    </div>
+                    <div class="item-date">2023</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,7 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  CheckCircle,
+  Download,
+  FileText,
+} from "lucide-react";
+import { downloadCV, downloadCVAsPDF, copyCVLink } from "@/lib/cv";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -12,6 +21,25 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [cvMessage, setCvMessage] = useState("");
+
+  const handleDownloadCV = () => {
+    const result = downloadCV();
+    setCvMessage(result.message);
+    setTimeout(() => setCvMessage(""), 3000);
+  };
+
+  const handleDownloadPDF = () => {
+    const result = downloadCVAsPDF();
+    setCvMessage(result.message);
+    setTimeout(() => setCvMessage(""), 3000);
+  };
+
+  const handleCopyLink = () => {
+    const result = copyCVLink();
+    setCvMessage(result.message);
+    setTimeout(() => setCvMessage(""), 3000);
+  };
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -144,6 +172,39 @@ export default function Contact() {
                 ))}
               </div>
             </div>
+          </div>
+
+          {/* CV Download Section */}
+          <div className="mt-8">
+            <h4 className="font-semibold mb-4">Tải CV của tôi</h4>
+            <div className="flex flex-wrap gap-3">
+              <button
+                onClick={handleDownloadCV}
+                className="flex items-center gap-2 px-4 py-2 gradient-animated text-primary-foreground rounded-xl font-semibold hover:scale-105 transition-all duration-200 glow-effect"
+              >
+                <Download className="w-4 h-4" />
+                Tải CV
+              </button>
+              <button
+                onClick={handleDownloadPDF}
+                className="flex items-center gap-2 px-4 py-2 glass-effect border border-border text-foreground rounded-xl font-semibold hover:bg-accent transition-all duration-200 hover:scale-105"
+              >
+                <FileText className="w-4 h-4" />
+                Xem PDF
+              </button>
+              <button
+                onClick={handleCopyLink}
+                className="flex items-center gap-2 px-4 py-2 glass-effect border border-border text-foreground rounded-xl font-semibold hover:bg-accent transition-all duration-200 hover:scale-105"
+              >
+                <Mail className="w-4 h-4" />
+                Copy Link
+              </button>
+            </div>
+            {cvMessage && (
+              <div className="mt-3 p-3 rounded-xl bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 text-sm">
+                {cvMessage}
+              </div>
+            )}
           </div>
 
           {/* Contact Form */}

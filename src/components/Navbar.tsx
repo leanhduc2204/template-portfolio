@@ -1,8 +1,9 @@
 "use client";
 
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { Menu, Moon, Sun, X, Download } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useState } from "react";
+import { downloadCV } from "@/lib/cv";
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
@@ -10,6 +11,10 @@ export default function Navbar() {
 
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
+  };
+
+  const handleDownloadCV = () => {
+    downloadCV();
   };
 
   const scrollToSection = (sectionId: string) => {
@@ -55,8 +60,16 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Theme Toggle & Mobile Menu */}
+          {/* Theme Toggle & CV Download & Mobile Menu */}
           <div className="flex items-center space-x-4">
+            <button
+              onClick={handleDownloadCV}
+              className="hidden md:flex items-center gap-2 px-4 py-2 glass-effect text-primary rounded-xl font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-105"
+            >
+              <Download className="w-4 h-4" />
+              <span>CV</span>
+            </button>
+
             <button
               onClick={toggleTheme}
               className="p-2 rounded-lg glass-effect hover:bg-accent transition-all duration-200 hover:scale-110 glow-effect"
@@ -97,6 +110,13 @@ export default function Navbar() {
                   {item.name}
                 </button>
               ))}
+              <button
+                onClick={handleDownloadCV}
+                className="flex items-center gap-2 text-left text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium py-2"
+              >
+                <Download className="w-4 h-4" />
+                Tải CV
+              </button>
             </div>
           </div>
         )}

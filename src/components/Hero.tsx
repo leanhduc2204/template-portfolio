@@ -1,12 +1,23 @@
 "use client";
 
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, Download } from "lucide-react";
+import { downloadCV } from "@/lib/cv";
 
 export default function Hero() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleDownloadCV = () => {
+    const result = downloadCV();
+    if (result.success) {
+      // You could add a toast notification here
+      console.log(result.message);
+    } else {
+      console.error(result.message);
     }
   };
 
@@ -62,6 +73,13 @@ export default function Hero() {
               className="px-8 py-4 gradient-animated text-primary-foreground rounded-2xl font-semibold hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl glow-effect"
             >
               Xem Dự Án
+            </button>
+            <button
+              onClick={handleDownloadCV}
+              className="px-8 py-4 glass-effect border-2 border-primary text-primary rounded-2xl font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-105 flex items-center gap-2"
+            >
+              <Download className="w-5 h-5" />
+              Tải CV
             </button>
             <button
               onClick={() => scrollToSection("contact")}
