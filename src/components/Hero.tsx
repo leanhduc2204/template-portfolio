@@ -76,7 +76,7 @@ export default function Hero() {
             </button>
             <button
               onClick={handleDownloadCV}
-              className="px-8 py-4 glass-effect border-2 border-primary text-primary rounded-2xl font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-105 flex items-center gap-2"
+              className="px-8 py-4 glass-effect border-2 border-primary text-primary rounded-2xl font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2"
             >
               <Download className="w-5 h-5" />
               Tải CV
