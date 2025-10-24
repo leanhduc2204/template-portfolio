@@ -2,8 +2,11 @@
 
 import { ArrowDown, Github, Linkedin, Mail, Download } from "lucide-react";
 import { downloadCV } from "@/lib/cv";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -44,14 +47,14 @@ export default function Hero() {
 
           {/* Name & Title */}
           <h1 className="font-heading text-5xl md:text-7xl font-bold mb-6 animate-fade-in-up">
-            <span className="gradient-text neon-text">Developer</span>
+            <span className="gradient-text neon-text">{t("hero.title")}</span>
           </h1>
 
           <h2
             className="text-2xl md:text-3xl text-muted-foreground mb-8 animate-fade-in-up"
             style={{ animationDelay: "0.2s" }}
           >
-            Full-Stack Developer & UI/UX Designer
+            {t("hero.subtitle")}
           </h2>
 
           {/* Description */}
@@ -59,8 +62,7 @@ export default function Hero() {
             className="text-lg text-muted-foreground max-w-2xl mx-auto mb-12 animate-fade-in-up"
             style={{ animationDelay: "0.4s" }}
           >
-            Tôi là một developer đam mê tạo ra những sản phẩm digital tuyệt vời.
-            Chuyên về React, Next.js, Node.js và thiết kế UI/UX hiện đại.
+            {t("hero.description")}
           </p>
 
           {/* CTA Buttons */}
@@ -72,20 +74,20 @@ export default function Hero() {
               onClick={() => scrollToSection("projects")}
               className="px-8 py-4 gradient-animated text-primary-foreground rounded-2xl font-semibold hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl glow-effect"
             >
-              Xem Dự Án
+              {t("hero.viewProjects")}
             </button>
             <button
               onClick={handleDownloadCV}
               className="px-8 py-4 glass-effect border-2 border-primary text-primary rounded-2xl font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2"
             >
               <Download className="w-5 h-5" />
-              Tải CV
+              {t("hero.downloadCV")}
             </button>
             <button
               onClick={() => scrollToSection("contact")}
               className="px-8 py-4 glass-effect border-2 border-primary text-primary rounded-2xl font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-105"
             >
-              Liên Hệ
+              {t("hero.contact")}
             </button>
           </div>
 

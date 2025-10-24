@@ -1,13 +1,16 @@
 "use client";
 
 import { Code, Palette, Database, Smartphone } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function About() {
+  const { t } = useLanguage();
+
   const stats = [
-    { label: "Dự án hoàn thành", value: "50+" },
-    { label: "Khách hàng hài lòng", value: "30+" },
-    { label: "Năm kinh nghiệm", value: "3+" },
-    { label: "Công nghệ sử dụng", value: "15+" },
+    { label: t("about.stats.projects"), value: "50+" },
+    { label: t("about.stats.clients"), value: "30+" },
+    { label: t("about.stats.experience"), value: "3+" },
+    { label: t("about.stats.technologies"), value: "15+" },
   ];
 
   const interests = [
@@ -38,11 +41,10 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6">
-            Giới thiệu về tôi
+            {t("about.title")}
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Tôi là một developer đam mê công nghệ với kinh nghiệm trong việc
-            phát triển các ứng dụng web và mobile hiện đại.
+            {t("about.subtitle")}
           </p>
         </div>
 
@@ -50,18 +52,13 @@ export default function About() {
           {/* Left Column - Description */}
           <div className="space-y-6">
             <h3 className="font-heading text-2xl font-bold mb-4">
-              Câu chuyện của tôi
+              {t("about.story")}
             </h3>
             <p className="text-muted-foreground leading-relaxed">
-              Bắt đầu hành trình lập trình từ năm 2020, tôi đã không ngừng học
-              hỏi và phát triển kỹ năng của mình. Từ những dòng code đầu tiên
-              đến việc xây dựng các ứng dụng phức tạp, tôi luôn đặt chất lượng
-              và trải nghiệm người dùng lên hàng đầu.
+              {t("about.journeyText1")}
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Với niềm đam mê về công nghệ và thiết kế, tôi không chỉ code mà
-              còn quan tâm đến việc tạo ra những sản phẩm có ý nghĩa và tác động
-              tích cực đến cuộc sống.
+              {t("about.journeyText2")}
             </p>
 
             {/* Stats */}
@@ -85,7 +82,7 @@ export default function About() {
           {/* Right Column - Interests */}
           <div className="space-y-6">
             <h3 className="font-heading text-2xl font-bold mb-4">
-              Lĩnh vực chuyên môn
+              {t("about.interests")}
             </h3>
             <div className="grid gap-4">
               {interests.map((interest, index) => (
@@ -111,7 +108,7 @@ export default function About() {
         {/* Timeline */}
         <div className="text-center">
           <h3 className="font-heading text-2xl font-bold mb-8">
-            Hành trình phát triển
+            {t("about.journey")}
           </h3>
           <div className="max-w-4xl mx-auto">
             <div className="relative">
@@ -168,7 +165,7 @@ export default function About() {
                         <h4 className="font-semibold mb-2">{item.title}</h4>
                         <div className="text-primary mb-2">{item.company}</div>
                         <p className="text-muted-foreground text-sm">
-                          {item.description}
+                          {t(`about.journeyText${index + 3}`)}
                         </p>
                       </div>
                     </div>

@@ -12,8 +12,10 @@ import {
 } from "lucide-react";
 import { ProjectsData } from "@/types/projects";
 import { getProjectsData, getProjectsByCategory } from "@/lib/projects";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Projects() {
+  const { t } = useLanguage();
   const [activeFilter, setActiveFilter] = useState("all");
   const [projectsData, setProjectsData] = useState<ProjectsData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -39,7 +41,7 @@ export default function Projects() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6">
-              Dự án nổi bật
+              {t("projects.featured")}
             </h2>
             <div className="flex justify-center">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
@@ -56,11 +58,9 @@ export default function Projects() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center">
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6">
-              Dự án nổi bật
+              {t("projects.featured")}
             </h2>
-            <p className="text-muted-foreground">
-              Không thể tải dữ liệu dự án.
-            </p>
+            <p className="text-muted-foreground">{t("projects.error")}</p>
           </div>
         </div>
       </section>
@@ -77,11 +77,10 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6">
-            Dự án nổi bật
+            {t("projects.featured")}
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Khám phá các dự án tôi đã thực hiện, từ ứng dụng web đến mobile, mỗi
-            dự án đều thể hiện kỹ năng và sự sáng tạo của tôi.
+            {t("projects.subtitle")}
           </p>
         </div>
 
@@ -97,7 +96,7 @@ export default function Projects() {
                   : "bg-muted text-muted-foreground hover:bg-accent hover:text-accent-foreground"
               }`}
             >
-              {filter.label}
+              {t(`projects.${filter.key}`)}
             </button>
           ))}
         </div>
@@ -196,7 +195,7 @@ export default function Projects() {
                   </div>
                   <div className="flex items-center gap-2 text-muted-foreground">
                     <Users className="w-4 h-4" />
-                    <span>{project.teamSize} người</span>
+                    <span>{project.teamSize}</span>
                   </div>
                   <div className="text-muted-foreground">
                     <span className="font-medium">{project.role}</span>
@@ -219,7 +218,7 @@ export default function Projects() {
                 {project.highlights && project.highlights.length > 0 && (
                   <div className="mb-4">
                     <h4 className="text-sm font-semibold mb-2 text-foreground">
-                      Điểm nổi bật:
+                      {t("projects.highlights")}
                     </h4>
                     <ul className="text-xs text-muted-foreground space-y-1">
                       {project.highlights
@@ -263,33 +262,39 @@ export default function Projects() {
         {/* Project Stats */}
         <div className="mt-16 mb-12">
           <h3 className="font-heading text-2xl font-bold text-center mb-8">
-            Thống kê dự án
+            {t("projects.stats")}
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="text-center p-6 rounded-2xl glass-effect">
               <div className="text-3xl font-bold text-primary mb-2">
                 {projectsData.stats.totalProjects}
               </div>
-              <div className="text-sm text-muted-foreground">Tổng dự án</div>
+              <div className="text-sm text-muted-foreground">
+                {t("projects.totalProjects")}
+              </div>
             </div>
             <div className="text-center p-6 rounded-2xl glass-effect">
               <div className="text-3xl font-bold text-primary mb-2">
                 {projectsData.stats.featuredProjects}
               </div>
-              <div className="text-sm text-muted-foreground">Dự án nổi bật</div>
+              <div className="text-sm text-muted-foreground">
+                {t("projects.featuredProjects")}
+              </div>
             </div>
             <div className="text-center p-6 rounded-2xl glass-effect">
               <div className="text-3xl font-bold text-primary mb-2">
                 {projectsData.stats.completedProjects}
               </div>
-              <div className="text-sm text-muted-foreground">Đã hoàn thành</div>
+              <div className="text-sm text-muted-foreground">
+                {t("projects.completedProjects")}
+              </div>
             </div>
             <div className="text-center p-6 rounded-2xl glass-effect">
               <div className="text-3xl font-bold text-primary mb-2">
                 {projectsData.stats.totalTechnologies}
               </div>
               <div className="text-sm text-muted-foreground">
-                Công nghệ sử dụng
+                {t("projects.totalTechnologies")}
               </div>
             </div>
           </div>
@@ -304,7 +309,7 @@ export default function Projects() {
             className="inline-flex items-center space-x-2 px-8 py-4 glass-effect text-muted-foreground rounded-2xl font-semibold hover:bg-accent hover:text-accent-foreground transition-all duration-200 hover:scale-105 glow-effect"
           >
             <Github className="w-5 h-5" />
-            <span>Xem thêm trên GitHub</span>
+            <span>{t("projects.viewMore")}</span>
           </a>
         </div>
       </div>

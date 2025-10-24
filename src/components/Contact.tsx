@@ -11,8 +11,10 @@ import {
   FileText,
 } from "lucide-react";
 import { downloadCV, downloadCVAsPDF, copyCVLink } from "@/lib/cv";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Contact() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -77,13 +79,13 @@ export default function Contact() {
     },
     {
       icon: Phone,
-      title: "Điện thoại",
+      title: t("contact.phone"),
       value: "+84 123 456 789",
       href: "tel:+84123456789",
     },
     {
       icon: MapPin,
-      title: "Địa chỉ",
+      title: t("contact.address"),
       value: "Hồ Chí Minh, Việt Nam",
       href: "#",
     },
@@ -94,11 +96,10 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6">
-            Liên hệ với tôi
+            {t("contact.title")}
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Có dự án thú vị? Hãy liên hệ với tôi để cùng nhau tạo ra những sản
-            phẩm tuyệt vời!
+            {t("contact.subtitle")}
           </p>
         </div>
 
@@ -107,12 +108,10 @@ export default function Contact() {
           <div className="space-y-8">
             <div>
               <h3 className="font-heading text-2xl font-bold mb-6">
-                Thông tin liên hệ
+                {t("contact.info")}
               </h3>
               <p className="text-muted-foreground leading-relaxed mb-8">
-                Tôi luôn sẵn sàng lắng nghe ý tưởng của bạn và cùng nhau phát
-                triển những dự án đầy tiềm năng. Hãy để lại tin nhắn hoặc liên
-                hệ trực tiếp!
+                {t("contact.infoText")}
               </p>
             </div>
 
@@ -136,7 +135,7 @@ export default function Contact() {
 
             {/* Social Links */}
             <div>
-              <h4 className="font-semibold mb-4">Theo dõi tôi</h4>
+              <h4 className="font-semibold mb-4">{t("contact.follow")}</h4>
               <div className="flex space-x-4">
                 {[
                   {
@@ -176,28 +175,28 @@ export default function Contact() {
 
           {/* CV Download Section */}
           <div className="mt-8">
-            <h4 className="font-semibold mb-4">Tải CV của tôi</h4>
+            <h4 className="font-semibold mb-4">{t("contact.downloadCV")}</h4>
             <div className="flex flex-wrap gap-3">
               <button
                 onClick={handleDownloadCV}
                 className="flex items-center gap-2 px-4 py-2 gradient-animated text-primary-foreground rounded-xl font-semibold hover:scale-105 transition-all duration-200 glow-effect"
               >
                 <Download className="w-4 h-4" />
-                Tải CV
+                {t("contact.downloadCVButton")}
               </button>
               <button
                 onClick={handleDownloadPDF}
                 className="flex items-center gap-2 px-4 py-2 glass-effect border border-border text-foreground rounded-xl font-semibold hover:bg-accent transition-all duration-200 hover:scale-105"
               >
                 <FileText className="w-4 h-4" />
-                Xem PDF
+                {t("contact.viewPDF")}
               </button>
               <button
                 onClick={handleCopyLink}
                 className="flex items-center gap-2 px-4 py-2 glass-effect border border-border text-foreground rounded-xl font-semibold hover:bg-accent transition-all duration-200 hover:scale-105"
               >
                 <Mail className="w-4 h-4" />
-                Copy Link
+                {t("contact.copyLink")}
               </button>
             </div>
             {cvMessage && (
@@ -210,18 +209,17 @@ export default function Contact() {
           {/* Contact Form */}
           <div className="p-8 rounded-2xl glass-effect shadow-sm border border-border">
             <h3 className="font-heading text-2xl font-bold mb-6">
-              Gửi tin nhắn
+              {t("contact.sendMessage")}
             </h3>
 
             {isSubmitted ? (
               <div className="text-center py-12">
                 <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
                 <h4 className="font-heading text-xl font-bold mb-2">
-                  Tin nhắn đã được gửi!
+                  {t("contact.success")}
                 </h4>
                 <p className="text-muted-foreground">
-                  Cảm ơn bạn đã liên hệ. Tôi sẽ phản hồi trong thời gian sớm
-                  nhất.
+                  {t("contact.successText")}
                 </p>
               </div>
             ) : (
@@ -232,7 +230,7 @@ export default function Contact() {
                       htmlFor="name"
                       className="block text-sm font-semibold mb-2"
                     >
-                      Họ và tên *
+                      {t("contact.name")} *
                     </label>
                     <input
                       type="text"
@@ -242,7 +240,7 @@ export default function Contact() {
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-200"
-                      placeholder="Nhập họ và tên"
+                      placeholder={t("contact.namePlaceholder")}
                     />
                   </div>
                   <div>
@@ -250,7 +248,7 @@ export default function Contact() {
                       htmlFor="email"
                       className="block text-sm font-semibold mb-2"
                     >
-                      Email *
+                      {t("contact.email")} *
                     </label>
                     <input
                       type="email"
@@ -260,7 +258,7 @@ export default function Contact() {
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-200"
-                      placeholder="Nhập email"
+                      placeholder={t("contact.emailPlaceholder")}
                     />
                   </div>
                 </div>
@@ -270,7 +268,7 @@ export default function Contact() {
                     htmlFor="subject"
                     className="block text-sm font-semibold mb-2"
                   >
-                    Chủ đề
+                    {t("contact.subject")}
                   </label>
                   <input
                     type="text"
@@ -279,7 +277,7 @@ export default function Contact() {
                     value={formData.subject}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-200"
-                    placeholder="Nhập chủ đề"
+                    placeholder={t("contact.subjectPlaceholder")}
                   />
                 </div>
 
@@ -288,7 +286,7 @@ export default function Contact() {
                     htmlFor="message"
                     className="block text-sm font-semibold mb-2"
                   >
-                    Tin nhắn *
+                    {t("contact.message")} *
                   </label>
                   <textarea
                     id="message"
@@ -298,7 +296,7 @@ export default function Contact() {
                     required
                     rows={6}
                     className="w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-200 resize-none"
-                    placeholder="Nhập tin nhắn của bạn..."
+                    placeholder={t("contact.messagePlaceholder")}
                   />
                 </div>
 
@@ -310,12 +308,12 @@ export default function Contact() {
                   {isSubmitting ? (
                     <>
                       <div className="w-5 h-5 border-2 border-primary-foreground border-t-transparent rounded-full animate-spin"></div>
-                      <span>Đang gửi...</span>
+                      <span>{t("contact.sending")}</span>
                     </>
                   ) : (
                     <>
                       <Send className="w-5 h-5" />
-                      <span>Gửi tin nhắn</span>
+                      <span>{t("contact.send")}</span>
                     </>
                   )}
                 </button>

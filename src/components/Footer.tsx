@@ -1,8 +1,10 @@
 "use client";
 
 import { ArrowUp, Github, Linkedin, Mail, Heart } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Footer() {
+  const { t } = useLanguage();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -15,11 +17,11 @@ export default function Footer() {
   };
 
   const quickLinks = [
-    { name: "Trang chủ", id: "home" },
-    { name: "Giới thiệu", id: "about" },
-    { name: "Kỹ năng", id: "skills" },
-    { name: "Dự án", id: "projects" },
-    { name: "Liên hệ", id: "contact" },
+    { name: t("nav.home"), id: "home" },
+    { name: t("nav.about"), id: "about" },
+    { name: t("nav.skills"), id: "skills" },
+    { name: t("nav.projects"), id: "projects" },
+    { name: t("nav.contact"), id: "contact" },
   ];
 
   const socialLinks = [
@@ -80,7 +82,7 @@ export default function Footer() {
           {/* Quick Links */}
           <div>
             <h3 className="font-heading font-bold text-lg mb-4">
-              Liên kết nhanh
+              {t("footer.quickLinks")}
             </h3>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
@@ -98,7 +100,9 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-heading font-bold text-lg mb-4">Liên hệ</h3>
+            <h3 className="font-heading font-bold text-lg mb-4">
+              {t("footer.contact")}
+            </h3>
             <div className="space-y-3 text-muted-foreground">
               <p>contact@example.com</p>
               <p>+84 123 456 789</p>

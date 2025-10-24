@@ -9,8 +9,10 @@ import {
   Smartphone,
 } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Skills() {
+  const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState("frontend");
 
   const skillCategories = {
@@ -96,11 +98,10 @@ export default function Skills() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6">
-            Kỹ năng & Chuyên môn
+            {t("skills.title")}
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Tôi có kinh nghiệm với nhiều công nghệ và công cụ khác nhau, luôn
-            cập nhật những xu hướng mới nhất trong ngành.
+            {t("skills.subtitle")}
           </p>
         </div>
 
@@ -150,7 +151,7 @@ export default function Skills() {
         {/* Certifications */}
         <div className="text-center">
           <h3 className="font-heading text-2xl font-bold mb-8">
-            Chứng chỉ & Bằng cấp
+            {t("skills.certifications")}
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {certifications.map((cert, index) => (
@@ -174,7 +175,7 @@ export default function Skills() {
         {/* Additional Skills */}
         <div className="mt-16 text-center">
           <h3 className="font-heading text-2xl font-bold mb-8">
-            Kỹ năng bổ sung
+            {t("skills.otherSkills")}
           </h3>
           <div className="flex flex-wrap justify-center gap-3">
             {[

@@ -1,12 +1,14 @@
 "use client";
 
-import { Menu, Moon, Sun, X, Download } from "lucide-react";
+import { Menu, Moon, Sun, X, Download, Globe } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useState } from "react";
 import { downloadCV } from "@/lib/cv";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
+  const { language, setLanguage, t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleTheme = () => {
@@ -26,11 +28,11 @@ export default function Navbar() {
   };
 
   const navItems = [
-    { name: "Trang chủ", id: "home" },
-    { name: "Giới thiệu", id: "about" },
-    { name: "Kỹ năng", id: "skills" },
-    { name: "Dự án", id: "projects" },
-    { name: "Liên hệ", id: "contact" },
+    { name: t("nav.home"), id: "home" },
+    { name: t("nav.about"), id: "about" },
+    { name: t("nav.skills"), id: "skills" },
+    { name: t("nav.projects"), id: "projects" },
+    { name: t("nav.contact"), id: "contact" },
   ];
 
   return (
@@ -60,14 +62,28 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Theme Toggle & CV Download & Mobile Menu */}
+          {/* Theme Toggle & Language Selector & CV Download & Mobile Menu */}
           <div className="flex items-center space-x-4">
+            {/* Language Selector */}
+            <div className="relative">
+              <button
+                onClick={() => setLanguage(language === "vi" ? "en" : "vi")}
+                className="flex items-center gap-2 px-3 py-2 glass-effect text-primary rounded-xl font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-105"
+                aria-label="Toggle language"
+              >
+                <Globe className="w-4 h-4" />
+                <span className="text-sm">
+                  {language === "vi" ? "VI" : "EN"}
+                </span>
+              </button>
+            </div>
+
             <button
               onClick={handleDownloadCV}
               className="hidden md:flex items-center gap-2 px-4 py-2 glass-effect text-primary rounded-xl font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-105"
             >
               <Download className="w-4 h-4" />
-              <span>CV</span>
+              <span>{t("nav.cv")}</span>
             </button>
 
             <button
@@ -115,7 +131,14 @@ export default function Navbar() {
                 className="flex items-center gap-2 text-left text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium py-2"
               >
                 <Download className="w-4 h-4" />
-                Tải CV
+                {t("nav.cv")}
+              </button>
+              <button
+                onClick={() => setLanguage(language === "vi" ? "en" : "vi")}
+                className="flex items-center gap-2 text-left text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium py-2"
+              >
+                <Globe className="w-4 h-4" />
+                {language === "vi" ? "English" : "Tiếng Việt"}
               </button>
             </div>
           </div>
